@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295dc29260ebc794fb83791d4611d7f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemPrefab: {fileID: 3993665443127677813, guid: 34da7cb405d14c6499934fa27890d549, type: 3}
+  _itemPrefab: {fileID: 8571304814959750160, guid: 34da7cb405d14c6499934fa27890d549, type: 3}
   _itemDatas:
   - {fileID: 11400000, guid: 968e615cde2d4a8459107fd6bdead5e9, type: 2}
   - {fileID: 11400000, guid: 28f8362bcaec4ed45954ae715317c088, type: 2}

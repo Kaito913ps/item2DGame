@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    [SerializeField] GameObject _itemPrefab;
+    [SerializeField] Item _itemPrefab;
     //ÉfÅ[É^
     [SerializeField] List<ItemData> _itemDatas;
 
@@ -24,14 +24,14 @@ public class ItemManager : MonoBehaviour
     float _fallTime;
     void Start()
     {
-        minX = _maxObj.transform.position.x;
+        minX = _minObj.transform.position.x;
         maxX = _maxObj.transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // staate
+        // if staate
 
         _fallTime += Time.deltaTime;
         _bonusTime += Time.deltaTime;
@@ -64,7 +64,7 @@ public class ItemManager : MonoBehaviour
     void CreateItem()
     {
         float posX = Random.Range(minX, maxX);
-        GameObject tmp = Instantiate(_itemPrefab, new Vector2(posX,_offsetY),Quaternion.identity);
+        Item tmp = Instantiate(_itemPrefab, new Vector2(posX,_offsetY),Quaternion.identity);
 
         if (tmp.TryGetComponent(out Item item))
         {
