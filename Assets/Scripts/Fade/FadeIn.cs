@@ -16,7 +16,7 @@ public class FadeIn : MonoBehaviour
 
     public void ClickBotton()
     {
-        
+        StartCoroutine(Age());
     }
 
     IEnumerator Age()

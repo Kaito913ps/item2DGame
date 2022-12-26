@@ -31,22 +31,24 @@ public class ItemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if staate
 
-        _fallTime += Time.deltaTime;
-        _bonusTime += Time.deltaTime;
+        if (GameState.Instance.CurrentState == State.Play)
+        {
+            _fallTime += Time.deltaTime;
+            _bonusTime += Time.deltaTime;
 
-        if(_fallTime > _interval)
-        {
-            _fallTime -= _interval;
-            //item
-            CreateItem();
-        }
-        if(_bonusTime > _bonusinterval)
-        {
-            _bonusTime -= _bonusinterval;
-            //ボーナス
-            CreateBonus();
+            if (_fallTime > _interval)
+            {
+                _fallTime -= _interval;
+                //item
+                CreateItem();
+            }
+            if (_bonusTime > _bonusinterval)
+            {
+                _bonusTime -= _bonusinterval;
+                //ボーナス
+                CreateBonus();
+            }
         }
     }
     /// <summary>

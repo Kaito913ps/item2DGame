@@ -1,18 +1,107 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] string[] _startCount;
+    [SerializeField] Text _countText;
+    [SerializeField] string _startText;
+    [SerializeField] Animator _fade;
+    [SerializeField] string _startAnimation;
+    [SerializeField] string _endAnimation;
+    [SerializeField] string endText;
+
+     float _gameMaxTime;
+    [SerializeField]
+    private int _minutue;
+    [SerializeField]
+    private float _seconds;
+    private float _totalTime;
+
+    private float _oldTime;
+    [SerializeField] private Text _timeText;
+
+
+    [SerializeField] FadeIn _fadeIn;
+    //score
+    [SerializeField] PlayerMovement _playerpoint;
+
+    float _currentTime;
     void Start()
     {
-        
+        StartGame();
+        _gameMaxTime = _minutue * 60 + _seconds;
+        _totalTime = _minutue * 60 + _seconds;
+    }
+
+    public void StartGame()
+    {
+        GameState.Instance.ChangeState(State.Ready);
+        StartCoroutine(CountDown());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameState.Instance.CurrentState == State.Play)
+        {
+            if(_totalTime <= 0)
+            {
+                return;
+            }
+            _totalTime -= Time.deltaTime;
+            _currentTime += Time.deltaTime;
+
+            _minutue = (int)_totalTime / 60;
+            _seconds = _totalTime - _minutue * 60;
+
+            if((int)_seconds != (int)_oldTime)
+            {
+                _timeText.text = $"Žc‚èŽžŠÔ{_minutue:00}:{_seconds:00}";
+            }
+            _oldTime = _seconds;
+
+
+
+            if(_currentTime > _gameMaxTime)
+            {
+                EndGame();
+            }
+        }
+        else if(GameState.Instance.CurrentState == State.Finish)
+        {
+            if(Input.anyKeyDown)
+            {
+                _fadeIn.ClickBotton();
+            }
+        }
     }
+
+    IEnumerator CountDown()
+    {
+        yield return new WaitForSeconds(1.0f);
+        int count = _startCount.Length;
+        while(count > 0)
+        {
+            _countText.text = _startCount[count - 1];
+            count--;
+            yield return new WaitForSeconds(1.0f);
+        }
+        _countText.text = _startText;
+        GameState.Instance.ChangeState(State.Play);
+        //_fade.Play(_startAnimation);
+    }
+
+    public void EndGame()
+    {
+        //_score
+        _playerpoint.TotalScore();
+        _countText.text = endText;
+        GameState.Instance.ChangeState(State.Finish);
+       // _fade.Play(_endAnimation);
+    }
+
 }
