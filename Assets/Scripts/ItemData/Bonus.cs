@@ -9,7 +9,7 @@ public class Bonus : MonoBehaviour
 
     SpriteRenderer _spriteRenderer;
     Rigidbody2D _rigidbody2D;
-    [SerializeField] int _heavy = 0;
+     int _heavy = 0;
     int _point = 0;
     float _bourst = 0;
     Vector2 _velocity = Vector2.zero;

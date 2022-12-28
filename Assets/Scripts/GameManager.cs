@@ -93,12 +93,14 @@ public class GameManager : MonoBehaviour
         _countText.text = _startText;
         GameState.Instance.ChangeState(State.Play);
         //_fade.Play(_startAnimation);
+        _countText.enabled = false;
     }
 
     public void EndGame()
     {
         //_score
         _playerpoint.TotalScore();
+        _countText.enabled = true;
         _countText.text = endText;
         GameState.Instance.ChangeState(State.Finish);
        // _fade.Play(_endAnimation);

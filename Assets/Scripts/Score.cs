@@ -10,8 +10,7 @@ public class Score : MonoBehaviour
     [SerializeField]
     private Text _ScoreText;
 
-    [SerializeField]
-    private bool _aScore;
+    
 
     public int ScorePoint
         { 

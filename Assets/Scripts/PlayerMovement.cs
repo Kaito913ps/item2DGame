@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -10,24 +11,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _defaultSpeed;
     [SerializeField] private float _playerMinPos;
     [SerializeField] private float _playerMaxPos;
+    [SerializeField] Text _scoretext;
 
-    [SerializeField] Score score;
+    public static int score;
 
     private Rigidbody2D _rb2D;
-    private bool _atari;
-    private bool _hazure;
+    private bool _atari = false;
+    private bool _hazure = false;
     private int _playerPoint;
 
 
     void Start()
     {
+        score = 0;
         _rb2D = GetComponent<Rigidbody2D>();
     }
 
    
     void Update()
     {
-        if(GameState.Instance.CurrentState == State.Play && !_hazure)
+        _scoretext.text = $"{score + _playerPoint}‰~";
+        if (GameState.Instance.CurrentState == State.Play && !_hazure)
         {
             var horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -58,35 +62,40 @@ public class PlayerMovement : MonoBehaviour
 
     public void TotalScore()
     {
-        if (_atari) score.ScorePoint += _playerPoint * 2;
-        else score.ScorePoint += _playerPoint;
+        if (_atari)
+        {
+            score += _playerPoint * 2;
+            //_atari = false;
+        }
+        else score += _playerPoint;
         _playerPoint = 0;
         _rb2D.velocity = Vector2.zero;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!_hazure)
         {
             if (other.TryGetComponent<Item>(out var item))
             {
+                //oto
                 _playerPoint += item.Score;
                 Destroy(other.gameObject);
             }
+        }
 
-            if(other.TryGetComponent<Atari>(out var atari))
-            {
-                _atari = true;
-                Destroy(other.gameObject);
-            }
+         if (other.gameObject.CompareTag("Atari") && !_hazure)
+        {
+            _atari = true;
+            Destroy(other.gameObject);
+        }
 
-            if(other.TryGetComponent<Hazure>(out var hazure))
-            {
-                score.ScorePoint -= 500;
-                if(score.ScorePoint < 0) score.ScorePoint = 0;
-                Destroy(other.gameObject);
-                StartCoroutine(Delay());
-            }
+         if (other.gameObject.CompareTag("Hazure") && !_hazure)
+        {
+            score -= 500;
+            if (score < 0) score = 0;
+            Destroy(other.gameObject);
+            StartCoroutine(Delay());
         }
     }
 

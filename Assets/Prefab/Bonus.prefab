@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 369172317213751883}
   - component: {fileID: 2380109424773199441}
   - component: {fileID: -2400810405926867407}
-  - component: {fileID: -8675298795574234919}
+  - component: {fileID: -3411630212356922168}
+  - component: {fileID: 5761336521676985186}
   m_Layer: 0
   m_Name: Bonus
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4970603988989616376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.112546, y: 2.3919468, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 87ffe403ed1efd9458e0e74d12890012, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,7 +108,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-8675298795574234919
+--- !u!70 &-3411630212356922168
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970603988989616376}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.56, y: 2.56}
+  m_Direction: 0
+--- !u!114 &5761336521676985186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,8 +133,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4970603988989616376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b84c4f9402eea64aa16438b089f5ea2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b5aa9ad8324c6a4e8d9f065397adf10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultGravity: 0
-  _heavy: 0
+  _defaultGravity: -5
+  _heavy: 50

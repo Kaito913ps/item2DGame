@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    [SerializeField] Item _itemPrefab;
+    [SerializeField] GameObject _itemPrefab;
     //ÉfÅ[É^
     [SerializeField] List<ItemData> _itemDatas;
 
@@ -66,7 +66,7 @@ public class ItemManager : MonoBehaviour
     void CreateItem()
     {
         float posX = Random.Range(minX, maxX);
-        Item tmp = Instantiate(_itemPrefab, new Vector2(posX,_offsetY),Quaternion.identity);
+        GameObject tmp = Instantiate(_itemPrefab, new Vector2(posX,_offsetY),Quaternion.identity);
 
         if (tmp.TryGetComponent(out Item item))
         {

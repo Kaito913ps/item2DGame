@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3145576170c3b7040819477add92bc4b, type: 3}
-  m_Name: point 3
+  m_Name: Bonus
   m_EditorClassIdentifier: 
   _heavy: 975
-  _score: 750
-  _sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  _score: 1000
+  _sprite: {fileID: 21300000, guid: 166b89c253b5c5f42823a753d2db9770, type: 3}
   _scale: {x: 0.25, y: 0.25, z: 1}
