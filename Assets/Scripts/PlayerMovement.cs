@@ -12,33 +12,61 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _playerMinPos;
     [SerializeField] private float _playerMaxPos;
     [SerializeField] Text _scoretext;
+    [SerializeField] SoundManager _soundManager;
+   
 
     public static int score;
 
+    private Animator _animator;
     private Rigidbody2D _rb2D;
     private bool _atari = false;
     private bool _hazure = false;
     private int _playerPoint;
+
+    bool _facingRight = true;
+
+    
 
 
     void Start()
     {
         score = 0;
         _rb2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+
+
     }
 
    
     void Update()
     {
-        _scoretext.text = $"{score + _playerPoint}‰~";
+        _scoretext.text = $"{score + _playerPoint}";
         if (GameState.Instance.CurrentState == State.Play && !_hazure)
         {
-            var horizontal = Input.GetAxisRaw("Horizontal");
-
-            _rb2D.velocity = new Vector2(horizontal * _speed, 0);
+            Move();
 
             kyorihatei();
         }
+    }
+
+    private void Move()
+    {
+        var horizontal = Input.GetAxisRaw("Horizontal");
+       
+
+        _rb2D.velocity = new Vector2(horizontal * _speed, 0);
+        var currentScale = transform.localScale;
+        if (horizontal < 0)
+        {
+
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        else if (horizontal > 0)
+        {
+            transform.localScale = new Vector3( 1, 1, 1);
+        }
+        _animator.SetFloat("xhorizontal",Mathf.Abs(_rb2D.velocity.x));
     }
 
     void kyorihatei()
@@ -79,15 +107,18 @@ public class PlayerMovement : MonoBehaviour
             if (other.TryGetComponent<Item>(out var item))
             {
                 //oto
+                // _soundManager.Play();
                 _playerPoint += item.Score;
                 Destroy(other.gameObject);
             }
         }
 
-         if (other.gameObject.CompareTag("Atari") && !_hazure)
+         if (other.gameObject.CompareTag("Gas") && !_hazure)
         {
-            _atari = true;
+            score -= 100;
+            if (score < 0) score = 0;
             Destroy(other.gameObject);
+            StartCoroutine(Delay());
         }
 
          if (other.gameObject.CompareTag("Hazure") && !_hazure)

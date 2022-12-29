@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] FadeIn _fadeIn;
     //score
     [SerializeField] PlayerMovement _playerpoint;
+    [SerializeField] SoundManager _soundManager;
 
     float _currentTime;
     void Start()
@@ -86,12 +87,16 @@ public class GameManager : MonoBehaviour
         int count = _startCount.Length;
         while(count > 0)
         {
+            //‰¹
+           // _soundManager.Play();
             _countText.text = _startCount[count - 1];
             count--;
             yield return new WaitForSeconds(1.0f);
         }
         _countText.text = _startText;
         GameState.Instance.ChangeState(State.Play);
+        // _soundManager.Play();
+        //‰¹
         //_fade.Play(_startAnimation);
         _countText.enabled = false;
     }
@@ -99,6 +104,8 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         //_score
+        //‰¹
+        // _soundManager.Play();
         _playerpoint.TotalScore();
         _countText.enabled = true;
         _countText.text = endText;
