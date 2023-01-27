@@ -13,7 +13,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] float _offsetY;
 
     [SerializeField] float _interval;
-    [SerializeField] GameObject[] _bonus;
+    [SerializeField] GameObject[] _trap;
     [SerializeField] float _bonusinterval;
 
     float minX;
@@ -57,8 +57,8 @@ public class ItemManager : MonoBehaviour
     void CreateBonus()
     {
         float posX = Random.Range(minX, maxX);
-        int index = Random.Range(0, _bonus.Length);
-        Instantiate(_bonus[index], new Vector2(posX, _offsetY), Quaternion.identity);
+        int index = Random.Range(0, _trap.Length);
+        Instantiate(_trap[index], new Vector2(posX, _offsetY), Quaternion.identity);
     }
     /// <summary>
     /// ’Êí‚ÌƒAƒCƒeƒ€‚ğ¶¬

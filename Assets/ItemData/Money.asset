@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Money
   m_EditorClassIdentifier: 
   _heavy: 0
-  _score: 100
+  _score: 50
   _sprite: {fileID: 21300000, guid: fc9d7ac77b80e424d9c6d2890f9af52b, type: 3}
-  _scale: {x: 0.15, y: 0.15, z: 1}
+  _scale: {x: 0.2, y: 0.2, z: 1}

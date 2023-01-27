@@ -561,9 +561,9 @@ MonoBehaviour:
   _maxObj: {fileID: 922020797}
   _offsetY: 6
   _interval: 0.5
-  _bonus:
-  - {fileID: 4734162820744172102, guid: 6dca6628ce6ea024faaf981db1da6946, type: 3}
+  _trap:
   - {fileID: 4970603988989616376, guid: 0315ac0a8aff3ab4181242e0848eb15b, type: 3}
+  - {fileID: 4734162820744172102, guid: 6dca6628ce6ea024faaf981db1da6946, type: 3}
   _bonusinterval: 5
 --- !u!4 &224031347
 Transform:
@@ -728,15 +728,13 @@ MonoBehaviour:
   - 3
   _countText: {fileID: 480877049}
   _startText: "\u30B9\u30BF\u30FC\u30C8"
-  _fade: {fileID: 0}
-  _startAnimation: 
-  _endAnimation: 
   endText: "\u7D42\u308F\u308A"
   _minutue: 1
   _seconds: 30
   _timeText: {fileID: 688454423}
   _fadeIn: {fileID: 1608137791}
   _playerpoint: {fileID: 912010498}
+  _soundManager: {fileID: 0}
 --- !u!4 &512807601
 Transform:
   m_ObjectHideFlags: 0
@@ -1217,6 +1215,8 @@ MonoBehaviour:
   _playerMinPos: -8.46
   _playerMaxPos: 8.45
   _scoretext: {fileID: 580154704}
+  _soundManager: {fileID: 0}
+  _exception: {fileID: 8059935841630187137, guid: 0ec555c2379fa5f4e91b7b1be69c623c, type: 3}
 --- !u!50 &912010499
 Rigidbody2D:
   serializedVersion: 4
@@ -1549,6 +1549,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 462727404719643012, guid: 58d26e3ea2f48dd48a92d3df2252b6d5, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462727404719643013, guid: 58d26e3ea2f48dd48a92d3df2252b6d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d26e3ea2f48dd48a92d3df2252b6d5, type: 3}
 --- !u!114 &1608137791 stripped
@@ -1673,3 +1681,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1892440744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892440746}
+  - component: {fileID: 1892440745}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1892440745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892440744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 555155fec3cd54c4e8d52b219e8aff49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSourceList: []
+--- !u!4 &1892440746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892440744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.2407515, y: -5.3207245, z: -0.1262007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

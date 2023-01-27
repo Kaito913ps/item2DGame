@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ruby
   m_EditorClassIdentifier: 
   _heavy: 0
-  _score: 50
+  _score: 10
   _sprite: {fileID: 21300000, guid: 96df5282e804a6f488e4b55e33dbbef2, type: 3}
-  _scale: {x: 0.2, y: 0.2, z: 0}
+  _scale: {x: 0.25, y: 0.25, z: 0}

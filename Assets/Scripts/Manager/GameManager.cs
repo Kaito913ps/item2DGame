@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] string[] _startCount;
     [SerializeField] Text _countText;
     [SerializeField] string _startText;
-    [SerializeField] Animator _fade;
-    [SerializeField] string _startAnimation;
-    [SerializeField] string _endAnimation;
     [SerializeField] string endText;
 
      float _gameMaxTime;
@@ -97,7 +94,6 @@ public class GameManager : MonoBehaviour
         GameState.Instance.ChangeState(State.Play);
         // _soundManager.Play();
         //‰¹
-        //_fade.Play(_startAnimation);
         _countText.enabled = false;
     }
 
@@ -110,7 +106,6 @@ public class GameManager : MonoBehaviour
         _countText.enabled = true;
         _countText.text = endText;
         GameState.Instance.ChangeState(State.Finish);
-       // _fade.Play(_endAnimation);
     }
 
 }

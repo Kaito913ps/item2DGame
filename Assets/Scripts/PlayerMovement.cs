@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _playerMaxPos;
     [SerializeField] Text _scoretext;
     [SerializeField] SoundManager _soundManager;
+    [SerializeField] private Explosion _exception;
    
 
     public static int score;
@@ -116,16 +118,21 @@ public class PlayerMovement : MonoBehaviour
          if (other.gameObject.CompareTag("Gas") && !_hazure)
         {
             score -= 100;
-            if (score < 0) score = 0;
+            //if (score < 0) score = 0;
+           
+            
             Destroy(other.gameObject);
+            // _soundManager.Play();
             StartCoroutine(Delay());
         }
 
          if (other.gameObject.CompareTag("Hazure") && !_hazure)
         {
             score -= 500;
-            if (score < 0) score = 0;
+            //if (score < 0) score = 0;
+            // _soundManager.Play();
             Destroy(other.gameObject);
+            Instantiate(_exception, other.transform.localPosition,Quaternion.identity);
             StartCoroutine(Delay());
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hazure : MonoBehaviour
 {
     [SerializeField] float _defaultGravity;
+    [SerializeField] private Explosion _exception;
 
     SpriteRenderer _spriteRenderer;
     Rigidbody2D _rigidbody;
@@ -30,5 +31,13 @@ public class Hazure : MonoBehaviour
     void FixedUpdate()
     {
         _rigidbody.velocity = _velocity;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Instantiate(_exception, collision.transform.localPosition, Quaternion.identity);
+        }
     }
 }
