@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -15,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Text _scoretext;
     [SerializeField] SoundManager _soundManager;
     [SerializeField] private Explosion _exception;
-   
+    [SerializeField] private Explosion _gusexception;
+
 
     public static int score;
 
@@ -27,8 +29,23 @@ public class PlayerMovement : MonoBehaviour
 
     bool _facingRight = true;
 
-    
+    /// <summary> マテリアルの色パラメータのID</summary>
+    private static readonly int PROPERTY_COLOR = Shader.PropertyToID("_Color");
 
+    /// <summary>モデルのRenderer</summary>
+    [SerializeField]
+    private Renderer _renderer;
+
+    /// <summary>モデルのマテリアルの複製</summary>
+    private Material _material;
+
+    private Sequence _seq;
+
+    private void Awake()
+    {
+        // materialにアクセスして自動生成されるマテリアルを保持
+        _material = _renderer.material;
+    }
 
     void Start()
     {
@@ -109,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
             if (other.TryGetComponent<Item>(out var item))
             {
                 //oto
-                // _soundManager.Play();
+                SoundManager.Instance.PlaySE(SESoundData.SE.Item);
                 _playerPoint += item.Score;
                 Destroy(other.gameObject);
             }
@@ -122,7 +139,9 @@ public class PlayerMovement : MonoBehaviour
            
             
             Destroy(other.gameObject);
-            // _soundManager.Play();
+            HitFadeBlink(Color.red);
+            Instantiate(_gusexception, other.transform.localPosition, Quaternion.identity);
+            SoundManager.Instance.PlaySE(SESoundData.SE.Damage);
             StartCoroutine(Delay());
         }
 
@@ -130,8 +149,9 @@ public class PlayerMovement : MonoBehaviour
         {
             score -= 500;
             //if (score < 0) score = 0;
-            // _soundManager.Play();
+            SoundManager.Instance.PlaySE(SESoundData.SE.Bakudan);
             Destroy(other.gameObject);
+            HitFadeBlink(Color.red);
             Instantiate(_exception, other.transform.localPosition,Quaternion.identity);
             StartCoroutine(Delay());
         }
@@ -143,5 +163,16 @@ public class PlayerMovement : MonoBehaviour
         _hazure = true;
         yield return new WaitForSeconds(2.0f);
         _hazure = false;
+    }
+
+    /// <summary>カラー乗算によるダメージ演出再生</summary>
+    /// <param name="color"></param>
+    private void HitFadeBlink(Color color)
+    {
+        _seq?.Kill();
+        _seq = DOTween.Sequence();
+        _seq.Append(DOTween.To(() => Color.white, c => _material.SetColor(PROPERTY_COLOR, c), color, 0.1f));
+        _seq.Append(DOTween.To(() => color, c => _material.SetColor(PROPERTY_COLOR, c), Color.white, 0.1f));
+        _seq.Play();
     }
 }

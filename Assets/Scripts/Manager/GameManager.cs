@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviour
         while(count > 0)
         {
             //âπ
-           // _soundManager.Play();
+          
+            SoundManager.Instance.PlaySE(SESoundData.SE.Coutdown);
             _countText.text = _startCount[count - 1];
             count--;
             yield return new WaitForSeconds(1.0f);
@@ -93,14 +94,14 @@ public class GameManager : MonoBehaviour
         _countText.text = _startText;
         GameState.Instance.ChangeState(State.Play);
         // _soundManager.Play();
-        //âπ
+        //énÇ‹ÇËÇÃâπ
         _countText.enabled = false;
     }
 
     public void EndGame()
     {
         //_score
-        //âπ
+        //èIóπÇÃâπ
         // _soundManager.Play();
         _playerpoint.TotalScore();
         _countText.enabled = true;

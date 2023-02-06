@@ -2,37 +2,85 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField]
-    private AudioSource[] _audioSourceList;
-    void Start()
+    [SerializeField] AudioSource bgmAudioSource;
+    [SerializeField] AudioSource seAudioSource;
+
+    [SerializeField] List<BGMSoundData> bgmSoundDatas;
+    [SerializeField] List<SESoundData> seSoundDatas;
+
+    public float masterVolume = 1;
+    public float bgmMasterVolume = 1;
+    public float seMasterVolume = 1;
+
+    public static SoundManager Instance { get; private set; }
+
+    private void Awake()
     {
-        //audioSource配列の数だけAudioSourceを自分自信に生成して配列に格納
-        for(var i = 0; i < _audioSourceList.Length; i++)
+        if (Instance == null)
         {
-            _audioSourceList[i] = gameObject.AddComponent<AudioSource>();
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
-   //未使用のAudioSourceの取得全て使用中の場合はnullを返却
-   private AudioSource GetUnusedAudioSource()
+    public void PlayBGM(BGMSoundData.BGM bgm)
     {
-        for(var i = 0; i < _audioSourceList.Length; ++i)
-        {
-            if (_audioSourceList[i].isPlaying == false)
-                return _audioSourceList[i];
-        }
-        //未使用のAudioSourceは見つかりませんでした
-        return null;
+        BGMSoundData data = bgmSoundDatas.Find(data => data.bgm == bgm);
+        bgmAudioSource.clip = data.audioClip;
+        bgmAudioSource.volume = data.volume * bgmMasterVolume * masterVolume;
+        bgmAudioSource.Play();
     }
 
-    //指定されたAudioClipを未使用のAudioSourceで再生
-    public void Play(AudioClip clip)
+
+    public void PlaySE(SESoundData.SE se)
     {
-        var audioSource = GetUnusedAudioSource();
-        if (audioSource == null) return; //再生できませんでした
-        audioSource.clip = clip;
-        audioSource.Play();
+        SESoundData data = seSoundDatas.Find(data => data.se == se);
+        seAudioSource.volume = data.volume * seMasterVolume * masterVolume;
+        seAudioSource.PlayOneShot(data.audioClip);
     }
+
+}
+
+[System.Serializable]
+public class BGMSoundData
+{
+    public enum BGM
+    {
+        Title,
+        Start,
+        Dungeon,
+        Hoge, // これがラベルになる
+    }
+
+    public BGM bgm;
+    public AudioClip audioClip;
+    [Range(0, 1)]
+    public float volume = 1;
+}
+
+[System.Serializable]
+public class SESoundData
+{
+    public enum SE
+    {
+        TitleExit,
+        Coutdown,
+        Item,
+        Attack,
+        Damage,
+        Bakudan,
+        Hoge, // これがラベルになる
+    }
+
+    public SE se;
+    public AudioClip audioClip;
+    [Range(0, 1)]
+    public float volume = 1;
 }

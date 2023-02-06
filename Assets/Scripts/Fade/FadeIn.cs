@@ -17,6 +17,7 @@ public class FadeIn : MonoBehaviour
     public void ClickBotton()
     {
         StartCoroutine(Age());
+       SoundManager.Instance.PlaySE(SESoundData.SE.TitleExit);
     }
 
     IEnumerator Age()

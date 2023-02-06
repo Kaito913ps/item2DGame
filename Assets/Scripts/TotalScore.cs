@@ -10,6 +10,7 @@ public class TotalScore : MonoBehaviour
     void Start()
     {
         _score = PlayerMovement.score;
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(_score);
     }
 
     // Update is called once per frame
