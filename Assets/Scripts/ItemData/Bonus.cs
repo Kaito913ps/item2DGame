@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bonus : MonoBehaviour
 {
-    [SerializeField] float _defaultGravity;
+    [SerializeField] private float _defaultGravity;
+    [SerializeField] private int _heavy = 0;
 
-    SpriteRenderer _spriteRenderer;
-    Rigidbody2D _rigidbody2D;
-     int _heavy = 0;
-    int _point = 0;
-    float _bourst = 0;
+    private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rigidbody2D;
+    private float _bourst = 0;
+
     Vector2 _velocity = Vector2.zero;
     void Start()
     {

@@ -141,19 +141,35 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             HitFadeBlink(Color.red);
             Instantiate(_gusexception, other.transform.localPosition, Quaternion.identity);
-            SoundManager.Instance.PlaySE(SESoundData.SE.Damage);
+            SoundManager.Instance.PlaySE(SESoundData.SE.Gas);
             StartCoroutine(Delay());
         }
 
-         if (other.gameObject.CompareTag("Hazure") && !_hazure)
+         if (other.gameObject.CompareTag("Bom") && !_hazure)
         {
             score -= 500;
             //if (score < 0) score = 0;
-            SoundManager.Instance.PlaySE(SESoundData.SE.Bakudan);
+            SoundManager.Instance.PlaySE(SESoundData.SE.Bom);
             Destroy(other.gameObject);
             HitFadeBlink(Color.red);
             Instantiate(_exception, other.transform.localPosition,Quaternion.identity);
             StartCoroutine(Delay());
+        }
+
+         if(other.gameObject.CompareTag("Bonus") && !_hazure)
+        {
+            score += 100;
+
+            SoundManager.Instance.PlaySE(SESoundData.SE.ReaItem);
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Bonus2") && !_hazure)
+        {
+            score += 1000;
+
+            SoundManager.Instance.PlaySE(SESoundData.SE.ReaItem);
+            Destroy(other.gameObject);
         }
     }
 

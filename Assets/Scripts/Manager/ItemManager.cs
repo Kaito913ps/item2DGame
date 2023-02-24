@@ -14,6 +14,7 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] float _interval;
     [SerializeField] GameObject[] _trap;
+    [SerializeField] GameObject[] _rea;
     [SerializeField] float _bonusinterval;
 
     float minX;
@@ -42,23 +43,33 @@ public class ItemManager : MonoBehaviour
                 _fallTime -= _interval;
                 //item
                 CreateItem();
+               
             }
             if (_bonusTime > _bonusinterval)
             {
                 _bonusTime -= _bonusinterval;
-                //ボーナス
-                CreateBonus();
+                CreateTrap();
+                CreateRareItem();
             }
         }
     }
     /// <summary>
-    /// ボーナスアイテムを生成
+    /// トラップを生成
     /// </summary>
-    void CreateBonus()
+    void CreateTrap()
     {
         float posX = Random.Range(minX, maxX);
         int index = Random.Range(0, _trap.Length);
         Instantiate(_trap[index], new Vector2(posX, _offsetY), Quaternion.identity);
+    }
+
+
+
+    void CreateRareItem()
+    {
+        float posX = Random.Range(minX, maxX);
+        int index = Random.Range(0, _trap.Length);
+        Instantiate(_rea[index], new Vector2(posX, _offsetY), Quaternion.identity);
     }
     /// <summary>
     /// 通常のアイテムを生成

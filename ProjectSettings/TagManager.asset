@@ -7,6 +7,9 @@ TagManager:
   - Atari
   - Hazure
   - Gas
+  - Bom
+  - Bonus
+  - Bonus2
   layers:
   - Default
   - TransparentFX

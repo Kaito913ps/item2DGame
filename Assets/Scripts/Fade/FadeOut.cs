@@ -16,6 +16,7 @@ public class FadeOut : MonoBehaviour
     void Start()
     {
         StartCoroutine(Age());
+        SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
     }
 
     IEnumerator Age()

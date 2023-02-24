@@ -54,9 +54,7 @@ public class BGMSoundData
     public enum BGM
     {
         Title,
-        Start,
-        Dungeon,
-        Hoge, // ‚±‚ê‚ªƒ‰ƒxƒ‹‚É‚È‚é
+        Game,
     }
 
     public BGM bgm;
@@ -73,9 +71,9 @@ public class SESoundData
         TitleExit,
         Coutdown,
         Item,
-        Attack,
-        Damage,
-        Bakudan,
+        ReaItem,
+        Gas,
+        Bom,
         Hoge, // ‚±‚ê‚ªƒ‰ƒxƒ‹‚É‚È‚é
     }
 

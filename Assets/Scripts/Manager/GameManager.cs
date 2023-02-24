@@ -25,11 +25,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] FadeIn _fadeIn;
     //score
     [SerializeField] PlayerMovement _playerpoint;
-    [SerializeField] SoundManager _soundManager;
 
     float _currentTime;
     void Start()
     {
+        SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Game);
         StartGame();
         _gameMaxTime = _minutue * 60 + _seconds;
         _totalTime = _minutue * 60 + _seconds;
@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         GameState.Instance.ChangeState(State.Play);
         // _soundManager.Play();
         //Žn‚Ü‚è‚Ì‰¹
+
         _countText.enabled = false;
     }
 
