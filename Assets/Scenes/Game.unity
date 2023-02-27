@@ -757,7 +757,7 @@ MonoBehaviour:
   _startText: "\u30B9\u30BF\u30FC\u30C8"
   endText: "\u7D42\u308F\u308A"
   _minutue: 1
-  _seconds: 30
+  _seconds: 0
   _timeText: {fileID: 688454423}
   _fadeIn: {fileID: 1608137791}
   _playerpoint: {fileID: 912010498}
