@@ -15,13 +15,14 @@ public class ItemManager : MonoBehaviour
     [SerializeField] float _interval;
     [SerializeField] GameObject[] _trap;
     [SerializeField] GameObject[] _rea;
+    [SerializeField] float _trapinterval;
     [SerializeField] float _bonusinterval;
 
     float minX;
     float maxX;
 
     float _bonusTime = 0;
-
+    float _trapTime;
     float _fallTime;
     void Start()
     {
@@ -36,6 +37,7 @@ public class ItemManager : MonoBehaviour
         if (GameState.Instance.CurrentState == State.Play)
         {
             _fallTime += Time.deltaTime;
+            _trapTime += Time.deltaTime;
             _bonusTime += Time.deltaTime;
 
             if (_fallTime > _interval)
@@ -43,12 +45,17 @@ public class ItemManager : MonoBehaviour
                 _fallTime -= _interval;
                 //item
                 CreateItem();
-               
             }
+
+            if(_trapTime > _trapinterval)
+            {
+                _trapTime -= _trapinterval;
+                CreateTrap();
+            }
+
             if (_bonusTime > _bonusinterval)
             {
                 _bonusTime -= _bonusinterval;
-                CreateTrap();
                 CreateRareItem();
             }
         }

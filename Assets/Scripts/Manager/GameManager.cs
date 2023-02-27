@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
 
             if(_currentTime > _gameMaxTime)
             {
+                _timeText.text = $"Žc‚èŽžŠÔ{_minutue:00}:{_seconds:00}";
                 EndGame();
             }
         }

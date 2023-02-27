@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Explosion _exception;
     [SerializeField] private Explosion _gusexception;
 
+    [SerializeField] private int _terturepoint1 = 100;
+    [SerializeField] private int _terturepoint2 = 1000;
+
+    [SerializeField] private int _bombepoint = 500;
+    [SerializeField] private int _guspoint = 100;
+
 
     public static int score;
 
@@ -134,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
          if (other.gameObject.CompareTag("Gas") && !_hazure)
         {
-            score -= 100;
+            score -= _guspoint;
             //if (score < 0) score = 0;
            
             
@@ -147,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
          if (other.gameObject.CompareTag("Bom") && !_hazure)
         {
-            score -= 500;
+            score -= _bombepoint;
             //if (score < 0) score = 0;
             SoundManager.Instance.PlaySE(SESoundData.SE.Bom);
             Destroy(other.gameObject);
@@ -158,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
          if(other.gameObject.CompareTag("Bonus") && !_hazure)
         {
-            score += 100;
+            score += _terturepoint1;
 
             SoundManager.Instance.PlaySE(SESoundData.SE.ReaItem);
             Destroy(other.gameObject);
@@ -166,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.gameObject.CompareTag("Bonus2") && !_hazure)
         {
-            score += 1000;
+            score += _terturepoint2;
 
             SoundManager.Instance.PlaySE(SESoundData.SE.ReaItem);
             Destroy(other.gameObject);

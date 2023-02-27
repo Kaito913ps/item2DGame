@@ -146,6 +146,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 369172317213751883}
     m_Modifications:
+    - target: {fileID: 1825690347517732248, guid: 2c567dd0ffceaa843bf97f32f6e73551, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825690347517732248, guid: 2c567dd0ffceaa843bf97f32f6e73551, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825690347517732248, guid: 2c567dd0ffceaa843bf97f32f6e73551, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825690347517732248, guid: 2c567dd0ffceaa843bf97f32f6e73551, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2073886327955007164, guid: 2c567dd0ffceaa843bf97f32f6e73551, type: 3}
       propertyPath: m_Name
       value: GameObject

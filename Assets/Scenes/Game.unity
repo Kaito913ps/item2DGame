@@ -591,6 +591,7 @@ MonoBehaviour:
   _rea:
   - {fileID: 7194247258578672554, guid: 759f80dd31c31554fa9258cade580d33, type: 3}
   - {fileID: 1732697276062438440, guid: c0b627b6fec43b340976ffd4b1e45c62, type: 3}
+  _trapinterval: 3
   _bonusinterval: 5
 --- !u!4 &224031347
 Transform:
@@ -757,7 +758,7 @@ MonoBehaviour:
   _startText: "\u30B9\u30BF\u30FC\u30C8"
   endText: "\u7D42\u308F\u308A"
   _minutue: 1
-  _seconds: 0
+  _seconds: 20
   _timeText: {fileID: 688454423}
   _fadeIn: {fileID: 1608137791}
   _playerpoint: {fileID: 912010498}
@@ -1244,6 +1245,10 @@ MonoBehaviour:
   _soundManager: {fileID: 0}
   _exception: {fileID: 8059935841630187137, guid: 0ec555c2379fa5f4e91b7b1be69c623c, type: 3}
   _gusexception: {fileID: -3262598822600435651, guid: 5ef672f7f1de26841a53f61fd88ddcf6, type: 3}
+  _terturepoint1: 100
+  _terturepoint2: 1000
+  _bombepoint: 500
+  _guspoint: 100
   _renderer: {fileID: 912010500}
 --- !u!50 &912010499
 Rigidbody2D:
